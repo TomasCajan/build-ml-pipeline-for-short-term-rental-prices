@@ -1,6 +1,10 @@
 import pytest
 import pandas as pd
 import wandb
+import logging
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
+logger = logging.getLogger()
 
 
 def pytest_addoption(parser):
@@ -15,8 +19,10 @@ def pytest_addoption(parser):
 def data(request):
     run = wandb.init(job_type="data_tests", resume=True)
 
-    # Download input artifact. This will also note that this script is using this
-    # particular version of the artifact
+    csv = run.use_artifact(request.config.option.csv)
+    csv_version = csv.version
+    logger.info(f"This is csv artifact version : {csv_version}")
+
     data_path = run.use_artifact(request.config.option.csv).file()
 
     if data_path is None:
@@ -31,8 +37,10 @@ def data(request):
 def ref_data(request):
     run = wandb.init(job_type="data_tests", resume=True)
 
-    # Download input artifact. This will also note that this script is using this
-    # particular version of the artifact
+    ref = run.use_artifact(request.config.option.ref)
+    ref_version = ref.version
+    logger.info(f"This is ref artifact version : {ref_version}")
+
     data_path = run.use_artifact(request.config.option.ref).file()
 
     if data_path is None:
