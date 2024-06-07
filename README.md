@@ -4,6 +4,9 @@ time on various rental platforms. You need to estimate the typical price for a g
 on the price of similar properties. Your company receives new data in bulk every week. The model needs 
 to be retrained with the same cadence, necessitating an end-to-end pipeline that can be reused.
 
+This repository is available at
+https://github.com/TomasCajan/build-ml-pipeline-for-short-term-rental-prices
+
 - This is my solution of the second MLOps nanodegree capstone project.
 - It contains the whole pipeline, currently released in version 1.0.1
 - Please find related wandb workspace at https://wandb.ai/tomas-cajan23/nyc_airbnb?nw=nwusertomascajan23
